@@ -15,7 +15,6 @@ action.destructive_requires_name: false
 
 # Security (disabled for development)
 xpack.security.enabled: false
-xpack.monitoring.enabled: true
 
 # Logging
 logger.level: INFO

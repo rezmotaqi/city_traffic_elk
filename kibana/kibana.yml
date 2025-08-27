@@ -4,19 +4,9 @@ server.port: 5601
 
 # Elasticsearch connection
 elasticsearch.hosts: ["http://elasticsearch:9200"]
-elasticsearch.username: elastic
-elasticsearch.password: changeme
 
 # Monitoring
 monitoring.ui.container.elasticsearch.enabled: true
 monitoring.ui.container.logstash.enabled: true
 
 # Default index pattern
-kibana.defaultAppId: discover
-
-# Time zone
-dateFormat: "MMMM Do YYYY, HH:mm:ss Z"
-dateFormat:tz: "UTC"
-
-# Dashboard settings
-dashboard.defaultViewId: discover

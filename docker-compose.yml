@@ -42,7 +42,7 @@ services:
       - ./logstash/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
       - ./logstash/pipeline.yml:/usr/share/logstash/config/pipeline.yml:ro
       - ./logstash/city_traffic.conf:/usr/share/logstash/pipeline/city_traffic.conf:ro
-      - ./data:/usr/share/logstash/data:ro
+      - ./data:/usr/share/logstash/data
     ports:
       - "5044:5044"
       - "5000:5000"
@@ -63,8 +63,6 @@ services:
     container_name: kibana
     environment:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
-      - ELASTICSEARCH_USERNAME=elastic
-      - ELASTICSEARCH_PASSWORD=changeme
     volumes:
       - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml:ro
       - ./kibana/dashboards:/usr/share/kibana/dashboards:ro
