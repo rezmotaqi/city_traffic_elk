@@ -42,7 +42,7 @@ check_prerequisites() {
     fi
     
     # Check Docker Compose
-    if ! command -v docker-compose &> /dev/null; then
+    if ! command -v docker compose &> /dev/null; then
         print_error "Docker Compose is not installed. Please install Docker Compose first."
         exit 1
     fi
@@ -74,13 +74,13 @@ setup_python() {
     
     # Create virtual environment if it doesn't exist
     if [ ! -d "venv" ]; then
-        python3 -m venv venv
+        python3 -m venv .venv
         print_success "Virtual environment created"
     fi
     
     # Activate virtual environment and install dependencies
-    source venv/bin/activate
-    pip install --upgrade pip
+    source .venv/bin/activate
+    pip install --upgrade pip wheel setuptools
     pip install -r requirements.txt
     
     print_success "Python dependencies installed"
@@ -90,7 +90,7 @@ setup_python() {
 generate_sample_data() {
     print_status "Generating initial sample data..."
     
-    source venv/bin/activate
+    source .venv/bin/activate
     
     # Generate 1000 sample records
     python3 data_generator.py --count 1000 --output data/sample_traffic.jsonl
@@ -103,10 +103,10 @@ start_elk_stack() {
     print_status "Starting ELK stack..."
     
     # Stop any existing containers
-    docker-compose down 2>/dev/null || true
+    docker compose down 2>/dev/null || true
     
     # Start services
-    docker-compose up -d
+    docker compose up -d
     
     print_success "ELK stack started"
     print_status "Waiting for services to be ready..."

@@ -1,0 +1,51 @@
+{
+  "index_patterns": ["city_traffic-*"],
+  "template": {
+    "settings": {
+      "number_of_shards": 1,
+      "number_of_replicas": 0,
+      "refresh_interval": "5s"
+    },
+    "mappings": {
+      "properties": {
+        "timestamp": { "type": "date" },
+        "@timestamp": { "type": "date" },
+        "location": {
+          "properties": {
+            "lat": { "type": "float" },
+            "lon": { "type": "float" },
+            "coordinates": { "type": "geo_point" },
+            "street": { "type": "keyword" },
+            "city": { "type": "keyword" },
+            "country": { "type": "keyword" }
+          }
+        },
+        "traffic_data": {
+          "properties": {
+            "vehicle_count": { "type": "integer" },
+            "average_speed": { "type": "float" },
+            "congestion_level": { "type": "keyword" },
+            "vehicle_types": { "type": "object" }
+          }
+        },
+        "weather": {
+          "properties": {
+            "temperature": { "type": "float" },
+            "conditions": { "type": "keyword" },
+            "humidity": { "type": "integer" },
+            "wind_speed": { "type": "integer" }
+          }
+        },
+        "hour_of_day": { "type": "integer" },
+        "day_of_week": { "type": "keyword" },
+        "month": { "type": "keyword" },
+        "is_rush_hour": { "type": "boolean" },
+        "traffic_severity_score": { "type": "float" },
+        "weather_impact": { "type": "keyword" },
+        "speed_reduction_factor": { "type": "float" },
+        "data_source": { "type": "keyword" },
+        "processed_at": { "type": "date" }
+      }
+    }
+  }
+}

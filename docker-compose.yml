@@ -1,4 +1,4 @@
-version: '3.8'
+# Docker Compose version (deprecated in newer versions)
 
 services:
   elasticsearch:
@@ -42,6 +42,7 @@ services:
       - ./logstash/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
       - ./logstash/pipeline.yml:/usr/share/logstash/config/pipeline.yml:ro
       - ./logstash/city_traffic.conf:/usr/share/logstash/pipeline/city_traffic.conf:ro
+      - ./logstash/city_traffic_template.json:/usr/share/logstash/templates/city_traffic_template.json:ro
       - ./data:/usr/share/logstash/data
     ports:
       - "5044:5044"
